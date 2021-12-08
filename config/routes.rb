@@ -8,10 +8,8 @@ Rails.application.routes.draw do
     get 'relationships/index'
     get 'followings' => 'relationships#followings'
     get 'followers' => 'relationships#followers'
-    resources :rooms, only: [:create, :show] do
-      resources :messages, only: [:create]
-    end
   end
+  resources :messages, only: [:create, :show]
   resources :groups do
     get 'join' => 'groups#join'
     post 'join' => 'groups#join'
