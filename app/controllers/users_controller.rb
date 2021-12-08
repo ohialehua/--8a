@@ -11,6 +11,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @books = @user.books
     @book = Book.new
+    @currentUserToRoom = Message.where(user_id: current_user.id)
+    @userToRoom = Message.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      @currentUserToRoom.each do |cu|
+      @userToRoom.each do |u|
+        if cu.room_id == u.room_id then
+          @isRoom = true
+          @roomId = cu.room_id
+        end
+        
   end
 
   def edit
